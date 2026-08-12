@@ -1,0 +1,218 @@
+/* ===== Fonts ===== */
+@font-face {
+  font-family: "Haas Grot Disp";
+  src: url("fonts/NeueHaasGrotDisp-45Light-Trial.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===== Design tokens (from spec) ===== */
+:root {
+  --banner-bg: #f6f1e8;
+  --page-bg:   #e6e4d9;
+  --ink:       #000000;
+  --pad-x: clamp(20px, 3vw, 60px);
+  --gallery-gap: clamp(8px, 1.4vw, 20px);
+}
+
+* { box-sizing: border-box; }
+
+h1, p { margin: 0; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--page-bg);
+  font-family: "Haas Grot Disp", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Top banner ===== */
+.banner {
+  background: var(--banner-bg);
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.4;
+  padding: 11px var(--pad-x);
+  letter-spacing: 0.01em;
+}
+
+/* ===== Hero ===== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 34px;
+  padding-bottom: 32px;
+}
+
+.monogram {
+  width: clamp(64px, 6.5vw, 100px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  aspect-ratio: 3396 / 4540;
+}
+
+.logo-link {
+  display: inline-block;
+  line-height: 0;
+  text-decoration: none;
+}
+
+.logo-link:focus-visible {
+  outline: 1px solid rgba(0, 0, 0, 0.4);
+  outline-offset: 4px;
+}
+
+.hero-heading {
+  margin: 22px 0 0 0;
+  padding: 0 var(--pad-x);
+  align-self: flex-start;
+  font-size: 12px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+/* ===== Gallery ===== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gallery-gap);
+}
+
+.tile {
+  aspect-ratio: 0.56 / 1;
+  overflow: hidden;
+  background: var(--banner-bg);
+}
+
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== Footer ===== */
+.site-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+  margin-top: 96px;
+  padding: 40px var(--pad-x) 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.wordmark {
+  width: clamp(70px, 6.4vw, 100px);
+  height: auto;
+  display: block;
+}
+
+.footer-info {
+  text-align: right;
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+.footer-info p { margin: 0; }
+
+.footer-info a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-info a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Gentle entrance ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: reveal-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes reveal-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 720px) {
+  .banner {
+    font-size: 12px;
+    padding: 14px 16px;
+    line-height: 1.5;
+  }
+
+  :root {
+    --pad-x: 20px;
+    --gallery-gap: 6px;
+  }
+
+  .hero {
+    padding-top: 28px;
+    padding-bottom: 24px;
+  }
+
+  .monogram {
+    width: 56px;
+  }
+
+  .hero-heading {
+    margin-top: 18px;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    line-height: 1.6;
+    align-self: center;
+    text-align: center;
+    max-width: 260px;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tile {
+    aspect-ratio: 0.8 / 1;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    margin-top: 56px;
+    padding-top: 28px;
+    padding-bottom: 36px;
+  }
+
+  .wordmark {
+    width: 64px;
+  }
+
+  .footer-info {
+    text-align: center;
+    font-size: 10.5px;
+  }
+}

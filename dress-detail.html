@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Second Story Studio — Dress Details</title>
+
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#f6f1e8">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-ss-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-ss-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-ss-180.png">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="banner">Home delivery fitting available within Metro Manila — ₱300 consumable fee</div>
+
+<header class="site-header">
+  <button class="nav-trigger" id="navTrigger" aria-label="Open menu" aria-expanded="false">
+    <span class="bars"><span></span><span></span><span></span></span>
+    <span>Full Closet</span>
+  </button>
+  <a href="index.html" class="logo-link" aria-label="Second Story home">
+    <img class="wordmark-header" src="assets/img/wordmark.png" alt="Second Story">
+  </a>
+  <span></span>
+</header>
+
+<div class="nav-scrim" id="navScrim"></div>
+<aside class="nav-drawer" id="navDrawer">
+  <button class="close-btn" id="navClose" aria-label="Close menu">&times;</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="full-closet.html">Full Closet</a>
+    <a href="dress-availability.html">Dress Availability</a>
+    <a href="assets/terms-and-conditions.pdf" target="_blank" rel="noopener">Terms and Conditions</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeGl86gedmSaa_Ox1_kwcuQUGthKKKsQtRHzOaMzC8k7yUMKA/viewform?usp=header" target="_blank" rel="noopener">Request a Dress</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd_ez1rhBiMMYynVgnU6CkGYyhC0YI6tfa6hxVlqMO-0Yb0FA/viewform?usp=header" target="_blank" rel="noopener">Booking Form</a>
+  </nav>
+</aside>
+
+<main class="page-wrap" id="detailWrap">
+  <!-- Filled in by JS below based on ?id= -->
+</main>
+
+<footer class="site-footer">
+  <a href="index.html" class="logo-link" aria-label="Second Story home">
+    <img class="wordmark" src="assets/img/wordmark.png" alt="Second Story">
+  </a>
+  <div class="footer-info">
+    <p><a href="mailto:mailus@secondstorybooking.com">mailus@secondstorybooking.com</a></p>
+    <p>Metro Manila, Philippines</p>
+    <p>© 2026 Second Story Studio. Archived pieces, worn again.</p>
+  </div>
+</footer>
+
+<script>
+const navTrigger = document.getElementById("navTrigger");
+const navDrawer = document.getElementById("navDrawer");
+const navScrim = document.getElementById("navScrim");
+const navClose = document.getElementById("navClose");
+function openNav() { navDrawer.classList.add("open"); navScrim.classList.add("open"); navTrigger.setAttribute("aria-expanded","true"); }
+function closeNav() { navDrawer.classList.remove("open"); navScrim.classList.remove("open"); navTrigger.setAttribute("aria-expanded","false"); }
+navTrigger.addEventListener("click", openNav);
+navClose.addEventListener("click", closeNav);
+navScrim.addEventListener("click", closeNav);
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeNav(); });
+
+// ---- Dress data (shared with Full Closet) ----
+const DRESSES = [{"id": "SS-01", "name": "Amalfi Dress", "source": "Whoopy Clothing", "size": "XS - S", "price": 500.0, "deposit": 500.0, "description": "A deep-red mini dress in dimensional rose lace, cut close through the bodice with slender spaghetti straps and a fitted, body-skimming silhouette. Rich texture throughout gives it a full, romantic feel — perfect for a party or a night out where you want a little drama.", "images": ["assets/img/dress-amalfi-2.jpg", "assets/img/dress-amalfi-1.jpg", "assets/img/dress-amalfi-3.jpg"], "sizeDesc": {"size": "S", "height": "65 cm", "waist": "68 cm", "bust": "76 cm"}}, {"id": "SS-02", "name": "Angelica Dress", "source": "Unihome VN", "size": "XS - S", "price": 500.0, "deposit": 500.0, "description": "A soft champagne satin set with a draped cowl neckline on top, paired with a matching floor-length skirt. Minimal and fluid, this one drapes beautifully for a black-tie dinner or an evening where you want understated elegance.", "images": ["assets/img/dress-angelica-1.jpg", "assets/img/dress-angelica-2.jpg", "assets/video/dress-angelica.mp4"], "sizeDesc": {"size": "S", "topLength": "59 cm", "skirtLength": "95 cm", "waist": "66 cm", "bust": "76 cm"}}, {"id": "SS-03", "name": "Aurora Dress", "source": "Wabi Sabi", "size": "XS - S", "price": 700.0, "deposit": 500.0, "description": "A delicate blush mini with sheer embroidered lace over a nude lining, scattered with pearl beading and soft sequin detail. Pearl-strap straps and a fitted silhouette give it a romantic, intricate finish — beautiful for a birthday dinner or an event where you want something a little more special.", "images": ["assets/img/dress-aurora-1.jpg", "assets/img/dress-aurora-2.jpg"], "sizeDesc": {"size": "S", "height": "65 cm", "waist": "68 cm", "bust": "80 cm"}}, {"id": "SS-04", "name": "Celestine Dress", "source": "Whoopy Clothing", "size": "XS - S", "price": 700.0, "deposit": 500.0, "description": "A body-hugging mini in intricate beadwork, with a plunging V-neckline and delicate spaghetti straps. Fully embellished with pearls and crystals in a diamond pattern, this one is glamorous and eye-catching — perfect for a party or a night you want to shine.", "images": ["assets/img/dress-celestine-1.jpg", "assets/img/dress-celestine-2.jpg", "assets/img/dress-celestine-3.jpg"], "sizeDesc": {"size": "S", "height": "75 cm", "waist": "68 cm", "bust": "80 cm"}}, {"id": "SS-05", "name": "Charlotte Set", "source": "Thái Nga Shop", "size": "XS - S", "price": 500.0, "deposit": 500.0, "description": "A structured peplum set in soft ivory — strapless bodice with a tailored peplum waist, paired with a sleek floor-length skirt. Clean and polished, this one leans more formal, ideal for a black-tie event or a night you want to look effortlessly put-together.", "images": ["assets/img/dress-charlotte-1.jpg", "assets/video/dress-charlotte.mp4"], "sizeDesc": {"size": "S", "topLength": "48 cm", "skirtLength": "99 cm", "waist": "66 cm", "bust": "82 cm"}}, {"id": "SS-06", "name": "Cherub Dress", "source": "ChouChou", "size": "XS - S", "price": 500.0, "deposit": 500.0, "description": "A strapless white mini with a structured bustier top and a dramatic sculptural puff hem. Bold and architectural, this one makes a statement — great for a birthday, a night out, or anywhere you want to stand out.", "images": ["assets/img/dress-cherub-1.jpg", "assets/img/dress-cherub-2.jpg", "assets/img/dress-cherub-3.jpg"], "sizeDesc": {"size": "S", "height": "59 cm", "waist": "64-66 cm", "bust": "80-84 cm"}}, {"id": "SS-08", "name": "Ciel Dress", "source": "Unihome VN", "size": "XS - S", "price": 500.0, "deposit": 500.0, "description": "A black satin column gown with a sculpted off-shoulder sweetheart neckline and an open back framed by a single ruched strap. Sleek and fluid all the way to the floor, this one is effortlessly dramatic, perfect for a formal event or a black-tie dinner. The black sister of our Raphael Dress, in a slightly roomier fit.", "images": ["assets/img/dress-ciel-1.jpg", "assets/img/dress-ciel-2.jpg", "assets/img/dress-ciel-3.jpg"], "sizeDesc": {"size": "S", "height": "145 cm", "waist": "66 cm", "bust": "85 cm"}}, {"id": "SS-09", "name": "Dahlia Dress", "source": "JUBIN Studio", "size": "XS - S", "price": 1100.0, "deposit": 500.0, "description": "A blush pink satin midi with a structured square neckline in front and a dramatic cowl-draped open back, laced with crisscross straps. The full, pleated skirt gives it a romantic, ballerina-inspired silhouette — a beautiful pick for a garden party or any daytime event with a soft, feminine feel.", "images": ["assets/img/dress-dahlia-1.jpg", "assets/img/dress-dahlia-2.jpg", "assets/img/dress-dahlia-3.jpg", "assets/img/dress-dahlia-4.jpg", "assets/img/dress-dahlia-5.jpg"], "sizeDesc": {"size": "M (Vietnam sizing, fits S)", "height": "120 cm", "waist": "68 cm", "bust": "86 cm"}}, {"id": "SS-10", "name": "Daphne Dress", "source": "Wabi Sabi", "size": "XS - S", "price": 700.0, "deposit": 500.0, "description": "A delicate cream mini with sheer embroidered lace over a nude lining, scattered with pearl beading and soft sequin detail. Pearl-strap straps and a fitted silhouette give it a romantic, intricate finish — beautiful for a birthday dinner or an event where you want something a little more special.", "images": ["assets/img/dress-daphne-1.jpg", "assets/img/dress-daphne-2.jpg"], "sizeDesc": {"size": "S", "height": "65 cm", "waist": "68 cm", "bust": "80 cm"}}, {"id": "SS-11", "name": "Florence Dress", "source": "Whoopy Clothing", "size": "XS - S", "price": 500.0, "deposit": 500.0, "description": "A white bridal-inspired gown with 3D floral lace appliqué across the bodice and flowing tulle skirt. Ethereal and romantic, this one is beautiful for a garden wedding, a bridal shower, or any event calling for something soft and dreamy.", "images": ["assets/img/dress-florence-1.jpg", "assets/img/dress-florence-2.jpg"], "sizeDesc": {"size": "S", "height": "116 cm", "waist": "66 cm", "bust": "76 cm"}}, {"id": "SS-12", "name": "Gigi Dress", "source": "RUBIES", "size": "XS - S", "price": 600.0, "deposit": 500.0, "description": "A butter-yellow satin slip gown with a scoop racerback neckline and a sleek, body-skimming fit down to the floor. Liquid and lustrous, this one is effortlessly glamorous — perfect for a formal event or any night you want a little shine without extra fuss.", "images": ["assets/img/dress-gigi-0.jpg", "assets/img/dress-gigi-1.jpg", "assets/img/dress-gigi-2.jpg", "assets/img/dress-gigi-3.jpg"], "sizeDesc": {"size": "S", "height": "145 cm (est.)", "waist": "<66 cm", "bust": "<84 cm"}}, {"id": "SS-13", "name": "Ibiza Dress", "source": "Wabi Sabi", "size": "XS - S", "price": 800.0, "deposit": 700.0, "description": "A cream halter gown with delicate lace appliqué through the bodice and a fluid, gathered skirt that falls into a dramatic sweep. Soft and ethereal with a bit of drama in the movement — a strong pick for a formal event or a bridal-adjacent occasion.", "images": ["assets/img/dress-ibiza-1.jpg", "assets/img/dress-ibiza-2.jpg", "assets/img/dress-ibiza-3.jpg", "assets/img/dress-ibiza-4.jpg"], "sizeDesc": {"size": "S", "height": "145 cm", "waist": "60 cm", "bust": "76 cm"}}, {"id": "SS-14", "name": "Ilay Dress", "source": "Deliciae VN", "size": "XS - S", "price": 900.0, "deposit": 700.0, "description": "A structured ivory satin column gown with a sculpted strapless bustier bodice and a sleek, floor-length silhouette. Clean lines and minimal detailing give it a modern, refined look — perfect for a black-tie event or a formal dinner.", "images": ["assets/img/dress-ilay-2.jpg", "assets/img/dress-ilay-1.jpg", "assets/img/dress-ilay-3.jpg", "assets/img/dress-ilay-4.jpg"], "sizeDesc": {"size": "S (adjustable bust)", "height": "142 cm (est.)", "waist": "66-70 cm", "bust": "78-84 cm"}}, {"id": "SS-15", "name": "Kendall Dress", "source": "Wabi Sabi", "size": "XS - S", "price": 800.0, "deposit": 700.0, "description": "An ivory strapless gown with dimensional floral appliqué in gold-cream tones cascading down a fitted, sheer-paneled silhouette. Textured and intricate, with a sheer skirt detail for movement — a striking pick for a formal event or gala.", "images": ["assets/img/dress-kendall-1.jpg", "assets/img/dress-kendall-2.jpg", "assets/img/dress-kendall-3.jpg"], "sizeDesc": {"size": "S", "height": "145 cm", "waist": "60 cm", "bust": "76 cm"}}, {"id": "SS-16", "name": "Lace Dress", "source": "Whoopy Clothing", "size": "XS - S", "price": 700.0, "deposit": 500.0, "description": "A white satin mini with a structured square neckline and a beautifully ruched, draped skirt in front. The corset-style lace-up back with adjustable straps gives it a customizable, figure-flattering fit — clean and versatile enough for a bridal shower, a birthday, or a night out.", "images": ["assets/img/dress-lace-1.jpg", "assets/img/dress-lace-2.jpg", "assets/img/dress-lace-3.jpg", "assets/img/dress-lace-4.jpg"], "sizeDesc": {"size": "S", "height": "75 cm", "waist": "68 cm", "bust": "80 cm"}}  , {"id": "SS-18", "name": "Marie Set", "source": "Buttercup Hanoi", "size": "XS - S", "price": 1500.0, "deposit": 1300.0, "description": "A fringe-trimmed set in warm caramel suede-look fabric, a strapless corset bodice paired with a wrap-tie mini skirt finished in cascading fringe. Western-inspired and full of movement, this one brings texture and edge, striking for a party or a night you want something different.", "images": ["assets/img/dress-marie-1.jpg", "assets/img/dress-marie-2.jpg", "assets/img/dress-marie-3.jpg", "assets/img/dress-marie-4.jpg", "assets/img/dress-marie-5.jpg"], "sizeDesc": null}, {"id": "SS-19", "name": "Matilda Dress", "source": "Whoopy Clothing", "size": "XS - S", "price": 400.0, "deposit": 500.0, "description": "A striking black and ivory color-blocked gown with a sweetheart neckline and delicate spaghetti straps. The contrast panel skirt creates a dramatic, sculptural fall to the floor — bold and editorial, perfect for a formal event or a night you want to make an entrance.", "images": ["assets/img/dress-matilda-1.jpg", "assets/img/dress-matilda-2.jpg"], "sizeDesc": {"size": "S", "height": "121 cm", "waist": "58-68 cm", "bust": "68-78 cm"}}, {"id": "SS-20", "name": "Mirella Dress", "source": "Whoopy Clothing", "size": "XS - S", "price": 500.0, "deposit": 500.0, "description": "A champagne bustier gown with a sweetheart neckline, delicate bow-detail straps, and a voluminous tulle skirt in a soft A-line silhouette. Romantic and full, this one has a real princess-dress feel — lovely for a garden event, a birthday, or any occasion calling for something dreamy.", "images": ["assets/img/dress-mirella-1.jpg", "assets/img/dress-mirella-2.jpg", "assets/video/dress-mirella.mp4"], "sizeDesc": {"size": "S", "height": "116 cm", "waist": "68 cm", "bust": "76 cm"}}, {"id": "SS-21", "name": "Odette Dress", "source": "Whoopy Clothing", "size": "XS - S", "price": 500.0, "deposit": 500.0, "description": "A dramatic black lace corset gown over a nude lining, with a strapless boned bodice and a full, sheer skirt with a subtle front slit. Sultry and romantic in equal measure — a strong choice for a formal event or an evening you want something with real presence.", "images": ["assets/img/dress-odette-1.jpg", "assets/img/dress-odette-2.jpg", "assets/video/dress-odette.mp4"], "sizeDesc": {"size": "S", "height": "116 cm", "waist": "66-70 cm", "bust": "78 cm"}}, {"id": "SS-22", "name": "Olivia Dress", "source": "Mood Emode", "size": "XS - S", "price": 800.0, "deposit": 700.0, "description": "A sage green mermaid gown in a shimmering floral jacquard, with delicate spaghetti straps and a beaded sweetheart bodice that flows into a sleek, fitted silhouette down to the floor. Soft and painterly with a subtle metallic sheen — a beautiful pick for a garden event or a formal dinner.", "images": ["assets/img/dress-olivia-1.jpg", "assets/img/dress-olivia-2.jpg", "assets/img/dress-olivia-3.jpg", "assets/img/dress-olivia-4.jpg", "assets/img/dress-olivia-5.jpg"], "sizeDesc": {"size": "S", "height": "145 cm", "waist": "60 cm", "bust": "76 cm"}}, {"id": "SS-23", "name": "Penelope Set", "source": "Thái Nga Shop", "size": "XS - S", "price": 500.0, "deposit": 500.0, "description": "The same tailored peplum silhouette in black, with a sheer skirt layer for added movement and drama. Strapless and structured up top, flowing and slightly transparent below — a striking pick for an evening event.", "images": ["assets/img/dress-penelope-1.jpg", "assets/img/dress-penelope-2.jpg"], "sizeDesc": {"size": "S", "topLength": "48 cm", "skirtLength": "99 cm", "waist": "66 cm", "bust": "82 cm"}} , {"id": "SS-25", "name": "Prim Dress", "source": "Oanh Bibi (OBIBI)", "size": "XS - S", "price": 500.0, "deposit": 500.0, "description": "A soft pink strapless gown with a striking geometric beaded bodice — crystal lattice detailing over sheer mesh — flowing into a fitted satin skirt with a slight flare at the hem. Structured up top, elegant all the way down, this one is a strong pick for a formal event or gala.", "images": ["assets/img/dress-prim-2.jpg", "assets/img/dress-prim-1.jpg", "assets/img/dress-prim-3.jpg"], "sizeDesc": {"size": "XS-S", "height": "126 cm", "waist": "62-66 cm", "bust": "70-76 cm"}}, {"id": "SS-26", "name": "Raphael Dress", "source": "Unihome VN", "size": "XS", "price": 500.0, "deposit": 500.0, "description": "A cream satin column gown with a sculpted off-shoulder sweetheart neckline and an open back framed by a single ruched strap. Soft, luminous, and fluid all the way to the floor, this one is understated enough for a rehearsal dinner and elegant enough to carry the whole night. Also available in black as our Ciel Dress.", "images": ["assets/img/dress-raphael-1.jpg", "assets/video/dress-raphael.mp4"], "sizeDesc": {"size": "XS or tag (fits XS-S)", "height": "145 cm", "waist": "62 cm", "bust": "90 cm"}}, {"id": "SS-27", "name": "Rose Dress", "source": "Thái Nga Shop", "size": "XS - S", "price": 500.0, "deposit": 500.0, "description": "A dusty rose gown with a dramatic ruffled, cascading skirt and a sculpted 3D rosette at the bodice. Textured and voluminous with a flattering high-low hem, this one is romantic and eye-catching — a beautiful pick for a formal event or gala.", "images": ["assets/img/dress-rose-2.jpg", "assets/img/dress-rose-1.jpg", "assets/img/dress-rose-3.jpg", "assets/img/dress-rose-4.jpg"], "sizeDesc": {"size": "S (Vietnam sizing, runs closer to XS)", "height": "145 cm (est.)", "waist": "64-66 cm", "bust": "80-84 cm"}}, {"id": "SS-28", "name": "Rumi Dress", "source": "Deliciae VN", "size": "XS - S", "price": 1000.0, "deposit": 700.0, "description": "A champagne gown in dimensional feathered texture, cut close through a sleek halter neckline and falling into a slim column silhouette. Soft and textural with a quiet shimmer, this one is elegant without trying, beautiful for a formal event or a night you want to feel effortlessly polished.", "images": ["assets/img/dress-rumi-1.jpg", "assets/img/dress-rumi-2.jpg", "assets/img/dress-rumi-3.jpg", "assets/img/dress-rumi-4.jpg", "assets/img/dress-rumi-5.jpg"], "sizeDesc": {"size": "S", "height": "—", "waist": "64 cm", "bust": "82 cm"}}, {"id": "SS-29", "name": "Solene Dress", "source": "COCOSIN", "size": "XS - S", "price": 1100.0, "deposit": 1000.0, "description": "A soft butter-yellow gown with an asymmetric draped neckline and a single dramatic cascading sash. Fluid and sculptural, with a fitted waist wrap that flows into a flared, floor-length skirt — striking and architectural, perfect for a formal event or gala.", "images": ["assets/img/dress-solene-1.jpg", "assets/img/dress-solene-2.jpg", "assets/img/dress-solene-3.jpg"], "sizeDesc": {"size": "S", "height": "155 cm", "waist": "64-66 cm", "bust": "84 cm"}}, {"id": "SS-30", "name": "Tiffany Dress", "source": "Oanh Bibi (OBIBI)", "size": "XS - S", "price": 1000.0, "deposit": 1000.0, "description": "A baby-blue mini heavily embellished with crystal beading and delicate draped chain detail across a strapless corset bodice, falling into a fringed, sculptural skirt. Sparkling and directional, this one makes an entrance, perfect for a party or a night you want to be the center of attention.", "images": ["assets/img/dress-tiffany-1.jpg", "assets/img/dress-tiffany-2.jpg", "assets/img/dress-tiffany-3.jpg", "assets/img/dress-tiffany-4.jpg", "assets/img/dress-tiffany-5.jpg"], "sizeDesc": null}, {"id": "SS-31", "name": "Zobel Dress", "source": "Wabi Sabi", "size": "XS - S", "price": 1000.0, "deposit": 700.0, "description": "A cream halter gown with a fully paillette-embellished bodice that catches the light with every movement, dropping into a soft, flowing chiffon skirt with a subtle train. Sleek through the top and romantic through the fall, this one is a strong pick for a formal event or gala.", "images": ["assets/img/dress-zobel-1.jpg", "assets/img/dress-zobel-2.jpg", "assets/img/dress-zobel-3.jpg", "assets/img/dress-zobel-4.jpg"], "sizeDesc": {"size": "S", "height": "145 cm", "waist": "60 cm", "bust": "76 cm"}}, {"id": "SS-32", "name": "Avia Dress", "source": "Whoopy Clothing", "size": "Free Size (fits S-M)", "price": 500.0, "deposit": 500.0, "description": "A black mini dress with a fitted sweetheart bodice and delicate spaghetti straps, flaring into dramatic champagne pleated panels through the skirt. The color-block contrast and voluminous flare give it a bold, sculptural movement, perfect for a party or a night out where you want something with real presence.", "images": ["assets/img/dress-avia-2.jpg", "assets/img/dress-avia-1.jpg", "assets/img/dress-avia-3.jpg"], "sizeDesc": {"size": "Free Size (S-M)", "height": "75 cm", "waist": "68-72 cm", "bust": "82-86 cm"}}, {"id": "SS-33", "name": "Ariana Dress", "source": "Oanh Bibi (OBIBI)", "size": "S", "price": 900.0, "deposit": 500.0, "description": "A crimson mini dress built from layered 3D floral petals, with a plunging halter neckline and a fitted bodice that flares into a dramatic, textured skirt. Bold and sculptural, this one makes a statement, beautiful for a party or a night you want all eyes on you.", "images": ["assets/img/dress-ariana-1.jpg", "assets/img/dress-ariana-2.jpg", "assets/img/dress-ariana-3.jpg", "assets/img/dress-ariana-4.jpg"], "sizeDesc": {"size": "S", "height": "65 cm", "waist": "68 cm", "bust": "76 cm"}}]
+
+// Model measurements — constant across every dress page
+const MODEL_SIZE = { size: "Model fits XS-Small sizes", height: "162.56 cm", waist: "66-68 cm", bust: "78 cm" };
+
+const PLACEHOLDER_IMG_COUNT = 6;
+
+function formatPrice(p) {
+  return "₱" + p.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function render() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  const dress = DRESSES.find(d => d.id === id) || DRESSES[0];
+
+  document.title = `Second Story Studio — ${dress.name}`;
+
+  const hasImages = dress.images && dress.images.length > 0;
+  const images = hasImages ? dress.images : null;
+
+  const isVideo = src => /\.(mp4|webm|mov)$/i.test(src);
+  const posterOf = src => src.replace("assets/video/", "assets/img/").replace(/\.(mp4|webm|mov)$/i, "-poster.jpg");
+  const mediaHTML = src => isVideo(src)
+    ? `<video poster="${posterOf(src)}" autoplay muted loop playsinline preload="metadata" aria-label="${dress.name} video"><source src="${src}" type="video/mp4"><source src="${src.replace(/\.mp4$/i, ".webm")}" type="video/webm"></video>`
+    : `<img src="${src}" alt="${dress.name}">`;
+
+  const mainPhotoHTML = hasImages ? mediaHTML(images[0]) : ``;
+
+  const thumbsHTML = hasImages
+    ? images.map((src, i) => `
+        <button class="${i === 0 ? 'active' : ''}" data-src="${src}" aria-label="View photo ${i + 1}">
+          <img src="${isVideo(src) ? posterOf(src) : src}" alt="${dress.name} ${isVideo(src) ? 'video' : 'photo ' + (i + 1)}">${isVideo(src) ? '<span class="thumb-play" aria-hidden="true"></span>' : ''}
+        </button>`).join("")
+    : Array.from({ length: PLACEHOLDER_IMG_COUNT }, () => `<button disabled></button>`).join("");
+
+  const descHTML = dress.description
+    ? `<p class="dress-description">${dress.description}</p>`
+    : `<p class="dress-description is-empty">Description coming soon.</p>`;
+
+  const sd = dress.sizeDesc;
+  const isSet = sd && (sd.topLength || sd.skirtLength);
+  const v = x => (x == null || x === "") ? "—" : x;
+  const sizeHead = isSet
+    ? `<th>Size</th><th>Top Length (in cm)</th><th>Skirt Length (in cm)</th><th>Waist (in cm)</th><th>Bust (in cm)</th>`
+    : `<th>Size</th><th>Length (in cm)</th><th>Waist (in cm)</th><th>Bust (in cm)</th>`;
+  const sizeRow = !sd
+    ? `<td>—</td><td>—</td><td>—</td><td>—</td>`
+    : isSet
+      ? `<td>${v(sd.size)}</td><td>${v(sd.topLength)}</td><td>${v(sd.skirtLength)}</td><td>${v(sd.waist)}</td><td>${v(sd.bust)}</td>`
+      : `<td>${v(sd.size)}</td><td>${v(sd.height)}</td><td>${v(sd.waist)}</td><td>${v(sd.bust)}</td>`;
+
+  document.getElementById("detailWrap").innerHTML = `
+    <div class="detail-layout">
+      <div class="detail-gallery">
+        <div class="main-photo" id="mainPhoto">${mainPhotoHTML}</div>
+        <div class="thumb-strip">${thumbsHTML}</div>
+      </div>
+
+      <div class="detail-info">
+        <div class="dress-name">${dress.name}</div>
+        <div class="dress-source">${dress.source ? "From " + dress.source : "&nbsp;"}</div>
+        <div class="dress-pricing">
+          <div>Rent for: ${formatPrice(dress.price)}</div>
+          ${dress.deposit != null ? `<div>Refundable Security Deposit: ${formatPrice(dress.deposit)}</div>` : ""}
+          ${dress.badge ? `<div class="dress-arriving">${dress.badge}</div>` : dress.arriving ? `<div class="dress-arriving">Arriving ${dress.arriving}</div>` : ""}
+        </div>
+
+        ${descHTML}
+
+        <h3>Size Description</h3>
+        <table class="size-table">
+          <thead><tr>${sizeHead}</tr></thead>
+          <tbody><tr>${sizeRow}</tr></tbody>
+        </table>
+
+        <h3>Model Size</h3>
+        <table class="size-table">
+          <thead><tr><th>Size</th><th>Height (in cm)</th><th>Waist (in cm)</th><th>Bust (in cm)</th></tr></thead>
+          <tbody><tr><td>${MODEL_SIZE.size}</td><td>${MODEL_SIZE.height}</td><td>${MODEL_SIZE.waist}</td><td>${MODEL_SIZE.bust}</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="detail-cta-row">
+      ${dress.arriving
+        ? `<a href="https://docs.google.com/forms/d/e/1FAIpQLSeGl86gedmSaa_Ox1_kwcuQUGthKKKsQtRHzOaMzC8k7yUMKA/viewform?usp=header" target="_blank" rel="noopener">Join the Waitlist &gt;</a>`
+        : `<a href="https://docs.google.com/forms/d/e/1FAIpQLSd_ez1rhBiMMYynVgnU6CkGYyhC0YI6tfa6hxVlqMO-0Yb0FA/viewform?usp=header" target="_blank" rel="noopener">Request a Fitting Appointment &gt;</a>`}
+      <a href="dress-availability.html">Check Dress Availability &gt;</a>
+    </div>
+  `;
+
+  if (hasImages) {
+    document.querySelectorAll(".thumb-strip button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.getElementById("mainPhoto").innerHTML = mediaHTML(btn.dataset.src);
+        document.querySelectorAll(".thumb-strip button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      });
+    });
+  }
+}
+
+render();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1062 @@
+@font-face {
+  font-family: "Haas Grot Disp";
+  src: url("fonts/NeueHaasGrotDisp-45Light-Trial.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Haas Grot Disp";
+  src: url("fonts/NeueHaasGrotDisp-55Roman-Trial.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lucia BT";
+  src: url("fonts/Lucia_BT.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --page-bg:   #e6e4d9;
+  --banner-bg: #f6f1e8;
+  --ink:       #40352F;
+  --ink-soft:  #595959;
+  --mauve:     #A69F97;
+  --line:      rgba(64, 53, 47, 0.18);
+  --pad-x: clamp(20px, 4vw, 60px);
+}
+
+* { box-sizing: border-box; }
+h1, h2, p { margin: 0; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--page-bg);
+  font-family: "Haas Grot Disp", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.banner {
+  background: var(--banner-bg);
+  text-align: center;
+  font-family: "Haas Grot Disp", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  padding: 11px var(--pad-x);
+}
+
+/* ---- Header / nav ---- */
+.site-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 26px var(--pad-x) 10px;
+}
+
+.nav-trigger {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-self: start;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 0;
+}
+
+.nav-trigger .bars {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.nav-trigger .bars span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--ink);
+}
+
+.site-header .logo-link {
+  justify-self: center;
+}
+
+.site-header .wordmark-header {
+  width: clamp(140px, 14vw, 200px);
+  height: auto;
+  aspect-ratio: 952 / 629;
+  display: block;
+}
+
+/* ---- Off-canvas nav drawer ---- */
+.nav-drawer {
+  position: fixed;
+  top: 0; left: 0;
+  height: 100%;
+  width: min(280px, 78vw);
+  background: var(--mauve);
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+  z-index: 100;
+  padding: 30px 34px;
+  display: flex;
+  flex-direction: column;
+}
+.nav-drawer.open { transform: translateX(0); }
+
+.nav-drawer .close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+  font-size: 22px;
+  color: var(--banner-bg);
+  margin-bottom: 36px;
+  line-height: 1;
+  padding: 0;
+}
+
+.nav-drawer nav {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.nav-drawer nav a {
+  color: var(--banner-bg);
+  text-decoration: none;
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.nav-drawer nav a:hover { opacity: 0.72; }
+
+.nav-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 99;
+}
+.nav-scrim.open { opacity: 1; pointer-events: auto; }
+
+/* ---- Footer ---- */
+.site-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+  margin-top: 64px;
+  padding: 40px var(--pad-x) 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.site-footer .wordmark {
+  width: clamp(70px, 6.4vw, 100px);
+  height: auto;
+}
+
+.site-footer .footer-info {
+  text-align: right;
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+.site-footer .footer-info p { margin: 0; }
+.site-footer .footer-info a {
+  color: inherit;
+  text-decoration: none;
+}
+.site-footer .footer-info a:hover { text-decoration: underline; }
+
+/* ---- Shared page layout ---- */
+.page-wrap, .avail-wrap {
+  padding: 30px var(--pad-x) 70px;
+}
+
+.page-title, .avail-title {
+  font-family: "Lucia BT", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: clamp(30px, 4.2vw, 52px);
+  line-height: 1.08;
+  margin-bottom: 30px;
+}
+
+.avail-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0 auto 26px;
+  max-width: 620px;
+  flex-wrap: wrap;
+}
+
+.dress-select-wrap {
+  position: relative;
+  flex: 1 1 260px;
+  max-width: 320px;
+}
+
+.dress-select-wrap select {
+  appearance: none;
+  width: 100%;
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--ink);
+  padding: 6px 22px 8px 0;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.dress-select-wrap::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  top: 45%;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  transform: translateY(-50%) rotate(45deg);
+  pointer-events: none;
+}
+
+.month-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 8px;
+}
+
+.month-nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--ink);
+  padding: 0 2px;
+  line-height: 1;
+}
+.month-nav button:hover { opacity: 0.6; }
+
+.month-nav .month-label {
+  min-width: 118px;
+  text-align: center;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  max-width: 620px;
+  margin: 0 auto;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.cal-dow {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 10px 0;
+  color: var(--ink-soft);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.cal-cell {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  padding: 8px 10px;
+}
+
+.cal-cell.empty { background: transparent; }
+
+.cal-cell.booked {
+  background: var(--ink);
+}
+.cal-cell.booked .num { color: var(--banner-bg); }
+
+.cal-cell.wash {
+  background: var(--mauve);
+}
+.cal-cell.wash .num { color: var(--banner-bg); }
+
+.cal-cell.today .num {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cal-cell .tip {
+  display: none;
+  position: absolute;
+  bottom: 105%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--banner-bg);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  padding: 5px 10px;
+  white-space: nowrap;
+  z-index: 5;
+  border-radius: 1px;
+}
+.cal-cell.booked:hover .tip,
+.cal-cell.wash:hover .tip { display: block; }
+
+.avail-legend {
+  display: flex;
+  gap: 26px;
+  margin: 24px auto 0;
+  max-width: 620px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.avail-legend .item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+}
+
+.avail-legend .swatch {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+}
+.avail-legend .swatch.available { border: 1px solid var(--line); }
+.avail-legend .swatch.booked { background: var(--ink); }
+.avail-legend .swatch.wash { background: var(--mauve); }
+
+.avail-legend .label.available { color: var(--mauve); }
+
+.avail-status {
+  margin: 30px auto 0;
+  max-width: 620px;
+  text-align: center;
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.avail-status.error { color: #8a2c2c; }
+
+/* ---- Delivery Fitting: image + steps ---- */
+.fitting-layout {
+  display: flex;
+  align-items: center;
+  gap: clamp(48px, 6vw, 100px);
+  max-width: 920px;
+  margin: 50px auto 70px;
+  flex-wrap: wrap;
+}
+
+.fitting-layout .fitting-photo {
+  flex: 0 0 380px;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 0.8 / 1;
+  overflow: hidden;
+  background: var(--banner-bg);
+}
+.fitting-layout .fitting-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fitting-steps {
+  flex: 1 1 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.fitting-step {
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+}
+.fitting-step:last-child { border-bottom: 1px solid var(--line); }
+
+.step-label {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.step-copy {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.55;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+
+/* ---- Bottom link row ---- */
+.page-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.page-links a {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+.page-links a:hover { opacity: 0.65; }
+
+/* ---- Full Closet ---- */
+.closet-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 6px 0 40px;
+}
+
+.closet-filter-wrap {
+  position: relative;
+}
+.closet-filter-wrap select {
+  appearance: none;
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  padding-right: 22px;
+}
+.closet-filter-wrap::after {
+  content: "";
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  transform: translateY(-65%) rotate(45deg);
+  pointer-events: none;
+}
+
+.closet-pagenav {
+  display: flex;
+  gap: 18px;
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--ink);
+}
+.closet-pagenav button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+.closet-pagenav button:hover { opacity: 0.6; }
+.closet-pagenav button:disabled { visibility: hidden; }
+
+.closet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 44px) clamp(16px, 2.4vw, 32px);
+}
+
+.closet-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.closet-card:hover .card-name { opacity: 0.7; }
+.closet-card .card-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 0.72 / 1;
+  overflow: hidden;
+  background: var(--banner-bg);
+  margin-bottom: 16px;
+}
+.closet-card .card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.closet-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--ink);
+  color: var(--banner-bg);
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 7px 10px;
+}
+
+.closet-card .card-name {
+  font-family: "Lucia BT", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 21px;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.closet-card .card-source,
+.closet-card .card-meta {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.closet-pagedots {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 56px;
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+}
+.closet-pagedots button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 0 0 4px;
+  border-bottom: 1px solid transparent;
+}
+.closet-pagedots button.active {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+.closet-pagedots button:hover { color: var(--ink); }
+
+/* ---- Ethos ---- */
+.ethos-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(40px, 5vw, 80px);
+  max-width: 920px;
+  margin: 8px auto 0;
+}
+
+.ethos-photo {
+  flex: 0 0 340px;
+  width: 340px;
+  aspect-ratio: 0.748 / 1;
+  overflow: hidden;
+  background: var(--banner-bg);
+  position: sticky;
+  top: 40px;
+}
+.ethos-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ethos-content {
+  flex: 1 1 420px;
+  max-width: 500px;
+}
+.ethos-content p {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.ethos-content p:last-child { margin-bottom: 0; }
+.ethos-content em,
+.ethos-content .accent {
+  font-family: "Lucia BT", Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.35em;
+  line-height: 1;
+}
+
+.ethos-cta {
+  max-width: 920px;
+  margin: 56px auto 60px;
+  text-align: center;
+}
+.ethos-cta a {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+.ethos-cta a:hover { opacity: 0.65; }
+
+/* ---- Home page ---- */
+.home-header-top {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 26px var(--pad-x) 0;
+}
+.home-header-top .left-group {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+.home-header-top a.text-link {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.home-header-top a.text-link:hover { opacity: 0.65; }
+.home-header-top .logo-link { justify-self: center; }
+.home-header-top .wordmark-header {
+  width: clamp(140px, 14vw, 200px);
+  height: auto;
+  aspect-ratio: 952 / 629;
+  display: block;
+}
+.home-header-top .right-link { justify-self: end; }
+
+.home-links-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
+  padding: 26px var(--pad-x) 24px;
+  margin-top: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.home-links-row a {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.home-links-row a:nth-child(1) { justify-self: start; }
+.home-links-row a:nth-child(2) { justify-self: center; }
+.home-links-row a:nth-child(3) { justify-self: end; }
+.home-links-row a:hover { opacity: 0.65; }
+
+.home-hero-video {
+  width: 100%;
+  aspect-ratio: 2.6 / 1;
+  background: var(--mauve);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home-hero-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.home-hero-video .placeholder-text {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.7;
+  color: #f6f1e8;
+}
+
+.home-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(8px, 1.4vw, 20px);
+  padding: 64px var(--pad-x) 0;
+}
+.home-gallery .tile {
+  aspect-ratio: 0.85 / 1;
+  overflow: hidden;
+  background: var(--banner-bg);
+}
+.home-gallery .tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.home-gallery a.tile-link { text-decoration: none; display: block; }
+.home-gallery .tile-caption {
+  margin-top: 18px;
+  text-align: center;
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.home-gallery a.tile-link:hover .tile-caption { opacity: 0.65; }
+
+.home-tagline {
+  text-align: center;
+  padding: 76px var(--pad-x) 96px;
+  font-family: "Lucia BT", Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+/* ---- Dress detail ---- */
+.detail-layout {
+  display: flex;
+  gap: clamp(40px, 5vw, 70px);
+  align-items: flex-start;
+  max-width: 1040px;
+  margin: 8px auto 50px;
+}
+
+.detail-gallery {
+  flex: 0 0 46%;
+  max-width: 520px;
+}
+.detail-gallery .main-photo {
+  width: 100%;
+  aspect-ratio: 0.8 / 1;
+  overflow: hidden;
+  background: var(--banner-bg);
+}
+.detail-gallery .main-photo img,
+.detail-gallery .main-photo video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.detail-gallery .thumb-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+.detail-gallery .thumb-strip button {
+  padding: 0;
+  border: 1px solid transparent;
+  background: var(--banner-bg);
+  aspect-ratio: 0.8 / 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+.detail-gallery .thumb-strip button.active { border-color: var(--ink); }
+.detail-gallery .thumb-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.detail-info { flex: 1 1 320px; padding-top: 4px; }
+.detail-info .dress-name {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.detail-info .dress-source {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 2px;
+  margin-bottom: 12px;
+}
+.detail-info .dress-pricing {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.detail-info .dress-pricing .dress-arriving {
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.detail-info .dress-description {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 40px;
+}
+.detail-info .dress-description.is-empty { color: var(--ink-soft); font-style: italic; }
+
+.detail-info h3 {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.detail-info .size-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 36px;
+  font-family: "Haas Grot Disp", sans-serif;
+}
+.detail-info .size-table th,
+.detail-info .size-table td {
+  border: 1px solid var(--line);
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--ink);
+}
+.detail-info .size-table th {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+
+.detail-cta-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 40px 0 60px;
+}
+.detail-cta-row a {
+  font-family: "Haas Grot Disp", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+.detail-cta-row a:hover { opacity: 0.65; }
+
+
+@media (max-width: 720px) {
+  .banner {
+    font-size: 12px;
+    padding: 14px 16px;
+    line-height: 1.5;
+  }
+
+  .site-header {
+    grid-template-columns: auto 1fr auto;
+    padding: 20px var(--pad-x) 8px;
+  }
+  .nav-trigger span:last-child:not(.bars) { display: none; }
+  .site-header .wordmark-header { width: 112px; }
+
+  .avail-title, .page-title { margin-bottom: 24px; }
+
+  .avail-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .dress-select-wrap { flex: none; max-width: none; }
+  .month-nav { justify-content: space-between; }
+
+  .cal-cell { font-size: 12px; padding: 6px; }
+  .cal-dow { font-size: 10px; padding: 8px 0; }
+
+  .avail-legend { gap: 14px; }
+  .avail-legend .item { font-size: 11px; }
+
+  .site-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    margin-top: 48px;
+    padding-top: 28px;
+    padding-bottom: 36px;
+  }
+  .site-footer .wordmark { width: 64px; }
+  .site-footer .footer-info { text-align: center; font-size: 10.5px; }
+
+  .fitting-layout {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 30px;
+    margin: 30px 0 40px;
+  }
+  .fitting-layout .fitting-photo { flex: none; width: 100%; max-width: none; aspect-ratio: 1.1 / 1; }
+  .fitting-step { padding: 20px 0; }
+  .step-copy { font-size: 15px; }
+
+  .page-links {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .closet-controls { margin: 4px 0 28px; }
+  .closet-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 14px;
+  }
+  .closet-card .card-name { font-size: 18px; }
+  .closet-card .card-source,
+  .closet-card .card-meta { font-size: 12px; }
+  .closet-pagedots { margin-top: 40px; gap: 16px; }
+
+  .ethos-layout {
+    flex-direction: column;
+    max-width: none;
+    margin: 4px 0 0;
+    gap: 32px;
+  }
+  .ethos-content { max-width: none; }
+  .ethos-content p { font-size: 15px; line-height: 1.8; margin-bottom: 26px; }
+  .ethos-photo {
+    position: static;
+    width: 100%;
+    flex: none;
+    aspect-ratio: 1.05 / 1;
+  }
+  .ethos-cta { max-width: none; text-align: left; margin: 40px 0 48px; }
+
+  .home-header-top { padding: 20px var(--pad-x) 0; }
+  .home-header-top .left-group .text-link,
+  .home-header-top .right-link { display: none; }
+  .home-header-top .wordmark-header { width: 112px; }
+
+  .home-links-row { display: none; }
+
+  .home-hero-video { aspect-ratio: 1.15 / 1; margin-top: 40px; }
+
+  .home-gallery {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 40px var(--pad-x) 0;
+  }
+
+  .home-tagline {
+    padding: 56px var(--pad-x) 64px;
+    font-size: 28px;
+  }
+
+  .detail-layout { flex-direction: column; gap: 32px; }
+  .detail-gallery { flex: none; max-width: none; width: 100%; }
+  .detail-info { max-width: none; }
+  .detail-info .dress-description,
+  .detail-info .size-table { max-width: none; }
+  .detail-cta-row { flex-direction: column; gap: 16px; padding: 30px 0 44px; }
+}
+
+/* video thumbnail play marker */
+.detail-gallery .thumb-strip button { position: relative; }
+.detail-gallery .thumb-play {
+  position: absolute; top: 50%; left: 50%;
+  width: 22px; height: 22px; margin: -11px 0 0 -11px;
+  border-radius: 50%; background: rgba(255,255,255,.85);
+}
+.detail-gallery .thumb-play::after {
+  content: ""; position: absolute; top: 6px; left: 8px;
+  border-style: solid; border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent var(--ink);
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Second Story Studio — Dress Availability</title>
+
+<meta name="description" content="Check real-time dress availability at Second Story Studio, a curated dress rental archive in Metro Manila, Philippines.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://secondstorybooking.com/dress-availability.html">
+<meta name="theme-color" content="#F2F1F0">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-ss-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-ss-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-ss-180.png">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<div class="banner">Home delivery fitting available within Metro Manila — ₱300 consumable fee</div>
+
+<header class="site-header">
+  <button class="nav-trigger" id="navTrigger" aria-label="Open menu" aria-expanded="false">
+    <span class="bars"><span></span><span></span><span></span></span>
+    <span>Dress Availability</span>
+  </button>
+  <a href="index.html" class="logo-link" aria-label="Second Story home">
+    <img class="wordmark-header" src="assets/img/wordmark.png" alt="Second Story">
+  </a>
+  <span></span>
+</header>
+
+<div class="nav-scrim" id="navScrim"></div>
+<aside class="nav-drawer" id="navDrawer">
+  <button class="close-btn" id="navClose" aria-label="Close menu">&times;</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="full-closet.html">Full Closet</a>
+    <a href="dress-availability.html">Dress Availability</a>
+    <a href="assets/terms-and-conditions.pdf" target="_blank" rel="noopener">Terms and Conditions</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeGl86gedmSaa_Ox1_kwcuQUGthKKKsQtRHzOaMzC8k7yUMKA/viewform?usp=header" target="_blank" rel="noopener">Request a Dress</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd_ez1rhBiMMYynVgnU6CkGYyhC0YI6tfa6hxVlqMO-0Yb0FA/viewform?usp=header" target="_blank" rel="noopener">Booking Form</a>
+  </nav>
+</aside>
+
+<main class="avail-wrap">
+  <h1 class="avail-title">Check the Closet</h1>
+
+  <div class="avail-controls">
+    <div class="dress-select-wrap">
+      <select id="dressSelect"><option>Loading dresses…</option></select>
+    </div>
+    <div class="month-nav">
+      <button id="prevMonth" aria-label="Previous month">&larr;</button>
+      <span class="month-label" id="monthLabel">—</span>
+      <button id="nextMonth" aria-label="Next month">&rarr;</button>
+    </div>
+  </div>
+
+  <div class="cal-grid" id="calGrid"></div>
+
+  <div class="avail-legend">
+    <span class="item"><span class="swatch available"></span><span class="label available">Available</span></span>
+    <span class="item"><span class="swatch booked"></span><span class="label">Booked</span></span>
+    <span class="item"><span class="swatch wash"></span><span class="label">Washing</span></span>
+  </div>
+
+  <p class="avail-status" id="statusLine">Syncing with the booking sheet…</p>
+</main>
+
+<footer class="site-footer">
+  <a href="index.html" class="logo-link" aria-label="Second Story home">
+    <img class="wordmark" src="assets/img/wordmark.png" alt="Second Story">
+  </a>
+  <div class="footer-info">
+    <p><a href="mailto:mailus@secondstorybooking.com">mailus@secondstorybooking.com</a></p>
+    <p>Metro Manila, Philippines</p>
+    <p>© 2026 Second Story Studio. Archived pieces, worn again.</p>
+  </div>
+</footer>
+
+<script>
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwkXVyxLDV1qDuoeSWHuzvSnFZQ1jDnnCQAOHNrZZy3xgCei1UorTYVsJK40mNC-hay/exec";
+
+// ---- Nav drawer ----
+const navTrigger = document.getElementById("navTrigger");
+const navDrawer = document.getElementById("navDrawer");
+const navScrim = document.getElementById("navScrim");
+const navClose = document.getElementById("navClose");
+
+function openNav() {
+  navDrawer.classList.add("open");
+  navScrim.classList.add("open");
+  navTrigger.setAttribute("aria-expanded", "true");
+}
+function closeNav() {
+  navDrawer.classList.remove("open");
+  navScrim.classList.remove("open");
+  navTrigger.setAttribute("aria-expanded", "false");
+}
+navTrigger.addEventListener("click", openNav);
+navClose.addEventListener("click", closeNav);
+navScrim.addEventListener("click", closeNav);
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeNav(); });
+
+// ---- Calendar ----
+let dresses = [];
+let blocks = [];
+let selectedId = null;
+let viewYear, viewMonth;
+
+async function loadData() {
+  const statusLine = document.getElementById("statusLine");
+  try {
+    const res = await fetch(APPS_SCRIPT_URL);
+    const data = await res.json();
+
+    dresses = data.dresses || [];
+    blocks = (data.blocks || []).map(b => ({
+      dressId: b.dressId,
+      start: new Date(b.start + "T00:00:00"),
+      end: new Date(b.end + "T00:00:00"),
+      status: b.status || "booked"
+    }));
+
+    const select = document.getElementById("dressSelect");
+    select.innerHTML = dresses.map(d => `<option value="${d.id}">${d.name} (${d.id})</option>`).join("");
+    if (dresses.length) {
+      selectedId = dresses[0].id;
+      select.value = selectedId;
+    }
+
+    const now = new Date();
+    viewYear = now.getFullYear();
+    viewMonth = now.getMonth();
+
+    const updated = data.updated ? new Date(data.updated) : now;
+    statusLine.textContent = "Synced " + updated.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) + " · live from the booking sheet";
+    statusLine.classList.remove("error");
+    renderCalendar();
+  } catch (err) {
+    statusLine.textContent = "Couldn't load availability right now — please check back shortly.";
+    statusLine.classList.add("error");
+  }
+}
+
+function renderCalendar() {
+  const grid = document.getElementById("calGrid");
+  const monthLabel = document.getElementById("monthLabel");
+  const dowNames = ["S", "M", "T", "W", "T", "F", "S"];
+  const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+  monthLabel.textContent = monthNames[viewMonth] + " " + viewYear;
+
+  const relevant = blocks.filter(b => b.dressId === selectedId);
+  const firstDay = new Date(viewYear, viewMonth, 1);
+  const startOffset = firstDay.getDay();
+  const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+  const today = new Date();
+
+  let html = dowNames.map(d => `<div class="cal-dow">${d}</div>`).join("");
+  for (let i = 0; i < startOffset; i++) html += `<div class="cal-cell empty"></div>`;
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const cellDate = new Date(viewYear, viewMonth, day);
+    const match = relevant.find(b => cellDate >= b.start && cellDate <= b.end);
+    const isToday = cellDate.toDateString() === today.toDateString();
+    const classes = ["cal-cell"];
+    if (match) classes.push(match.status === "wash" ? "wash" : "booked");
+    if (isToday) classes.push("today");
+    const tipText = match ? (match.status === "wash" ? "Washing" : "Booked") : "";
+    const tip = match ? `<span class="tip">${tipText}</span>` : "";
+    html += `<div class="${classes.join(" ")}"><span class="num">${day}</span>${tip}</div>`;
+  }
+
+  grid.innerHTML = html;
+}
+
+document.getElementById("dressSelect").addEventListener("change", (e) => {
+  selectedId = e.target.value;
+  renderCalendar();
+});
+document.getElementById("prevMonth").addEventListener("click", () => {
+  viewMonth--;
+  if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+  renderCalendar();
+});
+document.getElementById("nextMonth").addEventListener("click", () => {
+  viewMonth++;
+  if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+  renderCalendar();
+});
+
+loadData();
+</script>
+
+</body>
+</html>
